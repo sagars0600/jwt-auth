@@ -1,6 +1,11 @@
 package com.auth.Autherication.controller;
 
-import com.auth.Autherication.service.JwtUtil;
+import com.auth.Autherication.model.AuthDto;
+import com.auth.Autherication.model.JWTRequest;
+import com.auth.Autherication.model.UserDto;
+import com.auth.Autherication.model.UserWithOutPassword;
+import com.auth.Autherication.service.ServiceAuth;
+import com.auth.Autherication.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +19,17 @@ public class AuthRestController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @PostMapping("/auth/login")
-    public ResponseEntity<String> login(@RequestBody String userName) {
-        String token = jwtUtil.generateToken(userName);
+    @Autowired
+    private ServiceAuth authService;
 
-        return new ResponseEntity<String>(token, HttpStatus.OK);
+    @PostMapping("/auth/login")
+    public ResponseEntity<AuthDto> login(@RequestBody JWTRequest jwtRequest) throws Exception {
+        return new ResponseEntity<AuthDto>(authService.login(jwtRequest), HttpStatus.OK);
     }
 
-    @PostMapping("/auth/register")
-    public ResponseEntity<String> register(@RequestBody String userName) {
-        // Persist user to some persistent storage
-        System.out.println("Info saved...");
-
-        return new ResponseEntity<String>("Registered", HttpStatus.OK);
+    @PostMapping("/auth/signup")
+    public ResponseEntity<UserWithOutPassword> register(@RequestBody UserDto userDto) {
+        return new ResponseEntity<>(authService.signup(userDto), HttpStatus.OK);
     }
 
 

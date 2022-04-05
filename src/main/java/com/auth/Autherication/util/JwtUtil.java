@@ -1,9 +1,13 @@
-package com.auth.Autherication.service;
+package com.auth.Autherication.util;
 
 import com.auth.Autherication.exception.JwtTokenMalformedException;
 import com.auth.Autherication.exception.JwtTokenMissingException;
+import com.auth.Autherication.model.AuthDto;
+import com.auth.Autherication.model.JWTRequest;
+import com.auth.Autherication.repo.AuthRepo;
 import io.jsonwebtoken.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +15,7 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
+
     @Value("${jwt.secret}")
     private String jwtSecret;
 
@@ -51,5 +56,7 @@ public class JwtUtil {
             throw new JwtTokenMissingException("JWT claims string is empty.");
         }
     }
+
+
 
 }
