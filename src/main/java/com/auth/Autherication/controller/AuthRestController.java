@@ -24,7 +24,7 @@ public class AuthRestController {
 
     @PostMapping("/auth/login")
     public ResponseEntity<AuthDto> login(@RequestBody JWTRequest jwtRequest) throws Exception {
-        return new ResponseEntity<AuthDto>(authService.login(jwtRequest), HttpStatus.OK);
+        return new ResponseEntity<>(authService.login(jwtRequest), HttpStatus.OK);
     }
 
     @PostMapping("/auth/signup")

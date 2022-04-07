@@ -1,11 +1,13 @@
 package com.auth.Autherication.model;
 
+import com.auth.Autherication.constfile.ConstFiles;
+import com.auth.Autherication.enums.BloodGroup;
+import com.auth.Autherication.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,7 +21,7 @@ public class UserWithOutPassword {
     @Id
     private String userId;
 
-    @NotEmpty(message = "First name is required")
+    @NotEmpty(message = ConstFiles.firstName)
     private String firstName;
 
     @NotEmpty(message = "Middle name is required")
@@ -36,7 +38,7 @@ public class UserWithOutPassword {
     private Date dateOfBirth;
 
     @NotEmpty(message = "Gender is required")
-    private String gender;
+    private Gender gender;
 
     @NotEmpty(message = "address is required")
     private String address ;
@@ -45,7 +47,7 @@ public class UserWithOutPassword {
     private String employeeNumber;
 
     @NotEmpty(message = "Blood Group is required")
-    private String bloodGroup;
+    private BloodGroup bloodGroup;
 
     @NotEmpty(message = "Email is required")
     private String email;
