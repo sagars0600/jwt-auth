@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class AuthRestController {
 
@@ -28,7 +30,7 @@ public class AuthRestController {
     }
 
     @PostMapping("/auth/signup")
-    public ResponseEntity<UserWithOutPassword> register(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserWithOutPassword> register( @Valid @RequestBody UserDto userDto) {
         return new ResponseEntity<>(authService.signup(userDto), HttpStatus.OK);
     }
 

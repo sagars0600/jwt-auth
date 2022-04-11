@@ -1,7 +1,6 @@
 package com.auth.Autherication.exception;
 
 import com.auth.Autherication.model.ApiError;
-
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
